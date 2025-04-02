@@ -1,0 +1,28 @@
+name: "JFrog-GitHub OIDC Integration"
+on: push
+
+# This is required as per
+# https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers#adding-permissions-settings
+permissions:
+  id-token: write
+jobs:
+  build:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Print
+         run: env | sort
+       - name: Checkout
+         uses: actions/checkout@v4
+       - name: Setup JFrog CLI
+         uses: jfrog/setup-jfrog-cli@v4
+         env:  
+           JF_URL: ${{ secrets.JF_URL }}
+         with:
+           oidc-provider-name: 'vn-github'
+           version: latest
+       - name: Ping Artifactory
+         run: jf rt ping
+       - name: python config
+         run: jf pip-config --repo-resolve=vn-gh-pipy-test
+       - name: build
+         run: jf pip install -r requirements.txt
