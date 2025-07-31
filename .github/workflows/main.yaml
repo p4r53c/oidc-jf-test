@@ -20,6 +20,7 @@ jobs:
          with:
            oidc-provider-name: 'vn-github'
            version: latest
+           disable-job-summary: false
        - name: Ping Artifactory
          run: jf rt ping
        - name: python config
