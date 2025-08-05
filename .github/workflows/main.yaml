@@ -27,6 +27,8 @@ jobs:
          run: jf rt ping
        - name: python config
          run: jf pip-config --repo-resolve=vn-gh-pipy-test --repo-deploy=vn-gh-pipy-local
+       - name: Install setuptools and wheel
+         run: jf pip install --upgrade setuptools wheel
        - name: build
          run: jf pip install -r requirements.txt
        - name: Build Python package
