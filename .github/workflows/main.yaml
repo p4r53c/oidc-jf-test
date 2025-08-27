@@ -10,7 +10,7 @@ jobs:
        - name: Print
          run: env | sort
        - name: Checkout
-         uses: actions/checkout@v4
+         uses: actions/checkout@master
        - name: Setup Python
          uses: actions/setup-python@v5
          with:
