@@ -24,6 +24,7 @@ jobs:
            version: latest
            disable-job-summary: false
            skip_cache: true
+           ghe-base-url: https://github.corp.local/api/v3
        - name: Ping Artifactory
          run: jf rt ping
        - name: python config
